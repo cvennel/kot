@@ -35,7 +35,7 @@ Do this once after first cloning KOT...
 
 ## Backen (Python) Environment
 
-- Option 1: Use Setup Python Virtual Environment (recommended) </br> > `cd \kot\` </br> > `python -m venv env` </br> > `.\env\Scripts\activate` </br> > `pip install -r requirements.txt`</br> > `python -m pip install --upgrade pip`</br> > `cd \kot\backend\`</br> > `python manage.py runserver` </br>
+- Option 1: Use Setup Python Virtual Environment (recommended) </br> > `cd \kot\` </br> > `python -m venv env` </br> > `.\env\Scripts\activate` or on linux `source env/bin/activate` </br> > `pip install -r requirements.txt`</br> > `python -m pip install --upgrade pip`</br> > `cd \kot\backend\`</br> > `python manage.py makemigrations`</br> > `python manage.py migrate`</br> > `python manage.py runserver` </br>
 
 - Option 2: Use Pythons Global Enviornment </br> > `cd \kot\backend\` </br> > `pip install -r requirements.txt`
 
