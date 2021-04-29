@@ -8,7 +8,6 @@ from game.dice.dice_handler import DiceHandler
 from game.engine.player_queue import GamePlayers
 from game.turn_actions.player_movement import yield_tokyo
 from game.values.status import Status
-from game.player.ai_player import AI_Player
 
 
 class TerminalBoardGame:

@@ -52,7 +52,7 @@ class Player:
         self.username = username
 
     def __eq__(self, other):
-        return isinstance(other, Player) and self.username == other.username
+        return issubclass(type(other), Player) and self.username == other.username
 
     def is_in_tokyo(self):
         return self.location == Locations.TOKYO
@@ -128,3 +128,25 @@ class Player:
             "energy": self.energy,
             "cards": json_players_hand(self.cards)
         }
+
+    def choose_dice_to_re_roll(self, dice):
+        input_str = input("Choose which dice to re-roll (zero based index)")
+
+        selected_dice = []
+        for x in input_str.split():
+            try:
+                try:
+                    dice[(int(x))]
+                except IndexError:
+                    print(f"{x} is out of range!")
+                    return self.choose_dice_to_re_roll(dice)
+                selected_dice.append(int(x))
+            except:
+                print("error getting dice indices! try again!")
+                return self.choose_dice_to_re_roll(dice)
+
+        return selected_dice
+
+    def acknowledge(self):
+        input("Press enter to contine")
+        return

@@ -2,7 +2,6 @@ import itertools
 
 from game.cards.keep_cards.victory_point_manipulation_cards.eater_of_the_dead import EaterOfTheDead
 from game.player.player import Player
-from game.player.ai_player import AI_Player
 from game.values.locations import Locations
 
 
@@ -14,10 +13,9 @@ class GamePlayers:
         self.player_cycle = []
 
     def add_player_to_game(self, new_player):
-        if not isinstance(new_player, Player):
-            if not isinstance(new_player, AI_Player):
-                raise TypeError(
-                    "Object passed in was not an instance of Player")
+        if not issubclass(type(new_player), Player):
+            raise TypeError(
+                "Object passed in was not an instance of Player")
         if new_player in self.players:
             raise Exception("Player has already been added to game")
         self.players.append(new_player)
