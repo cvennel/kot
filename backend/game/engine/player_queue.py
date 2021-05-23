@@ -13,8 +13,9 @@ class GamePlayers:
         self.player_cycle = []
 
     def add_player_to_game(self, new_player):
-        if not isinstance(new_player, Player):
-            raise TypeError("Object passed in was not an instance of Player")
+        if not issubclass(type(new_player), Player):
+            raise TypeError(
+                "Object passed in was not an instance of Player")
         if new_player in self.players:
             raise Exception("Player has already been added to game")
         self.players.append(new_player)
