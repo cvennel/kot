@@ -1,5 +1,7 @@
 from game.engine.terminal_board import TerminalBoardGame
-from game.player.chaos_ai_player import Chaos_AI_Player
+from game.player.ai_players.chaos_ai_player import Chaos_AI_Player
+from game.player.ai_players.attack_ai_player import Attack_AI_Player
+from game.player.ai_players.points_ai_player import Points_AI_Player
 from game.dice.dice_resolver import dice_resolution
 from game.player.player import Player
 
@@ -8,8 +10,10 @@ if __name__ == "__main__":
 
     game_state = TerminalBoardGame()
     # game_state.add_player(Player(username="Real life Player"))
-    game_state.add_player(Chaos_AI_Player(username="AI George"))
-    game_state.add_player(Chaos_AI_Player(username="AI Bob"))
+    # game_state.add_player(Chaos_AI_Player(username="CHAOS AI George"))
+    # game_state.add_player(Chaos_AI_Player(username="CHAOS AI Bob"))
+    game_state.add_player(Attack_AI_Player(username="Attack AI Gandhi"))
+    game_state.add_player(Points_AI_Player(username="Points AI Trump"))
 
     game_state.start_game()
 
