@@ -15,8 +15,8 @@ class Final_AI_Player(Master_AI_Player):
         reroll = []
 
         # TODO: improve these heuristics,
-        attack_heuristic = self.distance_from_attack_victory()
-        star_heuristic = self.distance_from_star_victory()
+        attack_heuristic = self.distance_from_attack_victory() * self.aggression_level
+        star_heuristic = self.distance_from_star_victory() * (1 - self.aggression_level)
 
         if star_heuristic < attack_heuristic:
             strategy = turn_policy.star

@@ -33,9 +33,11 @@ class TerminalBoardGame:
             self.winner = potential_winner
 
             if potential_winner.victory_points >= constants.VICTORY_POINTS_TO_WIN:
-                print(f"{self.winner.username} won by victory points!!")
+                pass
+                # print(f"{self.winner.username} won by victory points!!")
             if self.players.is_last_player_alive(potential_winner):
-                print(f"{self.winner.username} won by combat!!")
+                pass
+                # print(f"{self.winner.username} won by combat!!")
 
             self.end_game()
             return True
@@ -81,6 +83,6 @@ class TerminalBoardGame:
             return self.players.current_player
 
     def yield_tokyo_to_current_player(self, yielding_player):
-        print(
-            f"{yielding_player.username} yields Tokyo to {self.players.current_player.username}!")
+        # print(
+        # f"{yielding_player.username} yields Tokyo to {self.players.current_player.username}!")
         yield_tokyo(yielding_player, self.players.current_player)
