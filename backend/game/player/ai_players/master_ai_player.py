@@ -21,6 +21,25 @@ class Master_AI_Player(Player):
             total_health += player.current_health
         return total_health
 
+    def decide_to_yield(self):
+        return True
+
+    def distance_to_next_turn(self):
+        i = 0
+
+        current_index = self.player_queue.players.index(
+            self.player_queue.current_player)
+
+        turn_order = self.player_queue.players.copy()
+        turn_order += self.player_queue.players.copy()
+
+        for j in range(current_index, len(turn_order)):
+            if turn_order[j] == self:
+                break
+            else:
+                i += 1
+        return i
+
     def attackable_players(self):
         attackables = []
         for player in self.player_queue.get_all_alive_players_minus_current_player():

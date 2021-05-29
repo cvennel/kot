@@ -11,7 +11,7 @@ from typing import DefaultDict, List
 from enum import Enum
 
 
-RUN_COUNTS = 1000
+RUN_COUNTS = 100
 MAIN_PLAYER_NAME = "Final AI Bob"
 
 
@@ -19,9 +19,10 @@ class opponent_type(Enum):
     final_vs_chaos = 0
     final_vs_attack = 1
     final_vs_points = 2
-    final_vs_final_ai_x1 = 3
-    final_vs_final_ai_x2 = 4
-    final_vs_final_ai_x3 = 5
+    final_vs_attack_x2 = 3
+    final_vs_points_x2 = 4
+    final_vs_attack_x3 = 5
+    final_vs_points_x3 = 6
 
 
 def create_game(opponent: opponent_type):
@@ -38,21 +39,39 @@ def create_game(opponent: opponent_type):
     elif opponent == opponent_type.final_vs_points:
         game_state.add_player(Points_AI_Player(
             game_state.players, username="Points AI George"))
-    elif opponent == opponent_type.final_vs_final_ai_x1:
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI ONE"))
-    elif opponent == opponent_type.final_vs_final_ai_x2:
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI ONE"))
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI TWO"))
-    elif opponent == opponent_type.final_vs_final_ai_x3:
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI ONE"))
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI TWO"))
-        game_state.add_player(Final_AI_Player(
-            game_state.players, username="Final AI THREE"))
+
+    elif opponent == opponent_type.final_vs_attack_x2:
+        game_state.add_player(Attack_AI_Player(
+            game_state.players, username="Attack AI George"))
+
+        game_state.add_player(Attack_AI_Player(
+            game_state.players, username="Attack AI George2"))
+
+    elif opponent == opponent_type.final_vs_points_x2:
+        game_state.add_player(Points_AI_Player(
+            game_state.players, username="Points AI George"))
+
+        game_state.add_player(Points_AI_Player(
+            game_state.players, username="Points AI George2"))
+
+    elif opponent == opponent_type.final_vs_attack_x3:
+        game_state.add_player(Attack_AI_Player(
+            game_state.players, username="Attack AI George"))
+
+        game_state.add_player(Attack_AI_Player(
+            game_state.players, username="Attack AI George2"))
+
+        game_state.add_player(Attack_AI_Player(
+            game_state.players, username="Attack AI George3"))
+
+    elif opponent == opponent_type.final_vs_points_x3:
+        game_state.add_player(Points_AI_Player(
+            game_state.players, username="Points AI George"))
+        game_state.add_player(Points_AI_Player(
+            game_state.players, username="Points AI George2"))
+        game_state.add_player(Points_AI_Player(
+            game_state.players, username="Points AI George3"))
+
     return game_state
 
 
@@ -74,7 +93,9 @@ if __name__ == "__main__":
 
     percentages = {}
 
-    for game_type in [opponent_type.final_vs_final_ai_x1, opponent_type.final_vs_final_ai_x2, opponent_type.final_vs_final_ai_x3]:
+    for game_type in [opponent_type.final_vs_points, opponent_type.final_vs_attack,
+                      opponent_type.final_vs_points_x2, opponent_type.final_vs_attack_x2,
+                      opponent_type.final_vs_points_x3, opponent_type.final_vs_attack_x3]:
         print(f"\n\nPlaying game type {game_type}")
         for i in range(0, 11):
             win_counts = DefaultDict(int)

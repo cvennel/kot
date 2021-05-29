@@ -11,9 +11,7 @@ class turn_policy(Enum):
 
 class Final_AI_Player(Master_AI_Player):
 
-    def choose_dice_to_re_roll(self, dice):
-        reroll = []
-
+    def get_current_policy(self):
         # TODO: improve these heuristics,
         attack_heuristic = self.distance_from_attack_victory() * self.aggression_level
         star_heuristic = self.distance_from_star_victory() * (1 - self.aggression_level)
@@ -22,6 +20,30 @@ class Final_AI_Player(Master_AI_Player):
             strategy = turn_policy.star
         else:
             strategy = turn_policy.attack
+
+        return strategy
+
+    def decide_to_yield(self):
+        # return True
+        strategy = self.get_current_policy()
+        distance_to_next_turn = self.distance_to_next_turn()
+
+        if strategy == turn_policy.star:
+            if distance_to_next_turn * 2 > self.current_health:
+                return True
+        else:
+            if distance_to_next_turn > 0:
+                return True
+
+        return False
+
+    def choose_dice_to_re_roll(self, dice, verbose=False):
+        reroll = []
+
+        strategy = self.get_current_policy()
+
+        if verbose:
+            print(f"{self.username} strategy: {strategy}")
 
         if strategy == turn_policy.star:
             die_enum = DieValue.THREE
@@ -45,6 +67,6 @@ class Final_AI_Player(Master_AI_Player):
             for i in range(len(dice)):
                 if dice[i] == DieValue.ATTACK:
                     continue
-                if random.choice([True, False]):
+                else:
                     reroll.append(i)
             return reroll

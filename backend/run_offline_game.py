@@ -2,6 +2,7 @@ from game.engine.terminal_board import TerminalBoardGame
 from game.player.ai_players.chaos_ai_player import Chaos_AI_Player
 from game.player.ai_players.final_ai_player import Final_AI_Player
 from game.player.ai_players.attack_ai_player import Attack_AI_Player
+from game.player.ai_players.master_ai_player import Master_AI_Player
 from game.player.ai_players.points_ai_player import Points_AI_Player
 from game.dice.dice_resolver import dice_resolution
 from game.player.player import Player
@@ -34,8 +35,12 @@ def run_game(game_state, verbose=False):
                 {game_state.dice_handler.re_rolls_left} re-rolls left")
 
             # Get what user selected to re-roll
-            to_re_roll = current_player.choose_dice_to_re_roll(
-                game_state.dice_handler.dice_values)
+            if issubclass(type(current_player), Master_AI_Player):
+                to_re_roll = current_player.choose_dice_to_re_roll(
+                    game_state.dice_handler.dice_values, verbose=verbose)
+            else:
+                to_re_roll = current_player.choose_dice_to_re_roll(
+                    game_state.dice_handler.dice_values)
 
             # log what was chosen
             if verbose:
@@ -58,7 +63,7 @@ def run_game(game_state, verbose=False):
 
         # Give everyone a chance to yield tokyo if they can
         for player in game_state.players.get_all_alive_players_minus_current_player():
-            if player.allowed_to_yield:
+            if player.allowed_to_yield and player.decide_to_yield():
                 game_state.yield_tokyo_to_current_player(player)
 
         # Checks if anyone has won and give chance for special card actions
@@ -85,11 +90,11 @@ if __name__ == "__main__":
         game_state.players, username="CHAOS AI George2"))
     game_state.add_player(Final_AI_Player(
         game_state.players, username="Final AI Bob"))
-    # game_state.add_player(Attack_AI_Player(
-    # game_state.players, username="Attack AI Gandhi"))
-    # game_state.add_player(Points_AI_Player(
-    # game_state.players, username="Points AI Trump"))
+    game_state.add_player(Attack_AI_Player(
+        game_state.players, username="Attack AI Gandhi"))
+    game_state.add_player(Points_AI_Player(
+        game_state.players, username="Points AI Trump"))
 
-    winner = run_game(game_state)
+    winner = run_game(game_state, verbose=True)
 
     print(f"The winner is {winner.username}")
