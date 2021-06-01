@@ -5,7 +5,7 @@ from game.dice.dice import DieValue
 
 class Points_AI_Player(Master_AI_Player):
 
-    def choose_dice_to_re_roll(self, dice):
+    def choose_dice_to_re_roll(self, dice, verbose=False):
         reroll = []
 
         die_enum = DieValue.THREE
