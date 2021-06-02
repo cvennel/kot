@@ -4,10 +4,10 @@ from game.engine.player_queue import GamePlayers
 
 
 class Master_AI_Player(Player):
-    def __init__(self, player_queue, username=None, aggression_level=.5):
+    def __init__(self, player_queue, username=None, passiveness=.5):
         super().__init__(username=username)
         self.player_queue: GamePlayers = player_queue
-        self.aggression_level = aggression_level
+        self.passiveness = passiveness
 
     def acknowledge(self):
         return

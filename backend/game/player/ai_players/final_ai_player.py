@@ -13,8 +13,8 @@ class Final_AI_Player(Master_AI_Player):
 
     def get_current_policy(self):
         # TODO: improve these heuristics,
-        attack_heuristic = self.distance_from_attack_victory() * self.aggression_level
-        star_heuristic = self.distance_from_star_victory() * (1 - self.aggression_level)
+        attack_heuristic = self.distance_from_attack_victory() * self.passiveness
+        star_heuristic = self.distance_from_star_victory() * (1 - self.passiveness)
 
         if star_heuristic < attack_heuristic:
             strategy = turn_policy.star

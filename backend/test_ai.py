@@ -3,7 +3,7 @@ import copy
 from statistics import mean
 from typing import DefaultDict
 
-from game.engine.run_offline_game import run_game
+from run_offline_game import run_game
 from game.engine.terminal_board import TerminalBoardGame
 from game.player.ai_players.attack_ai_player import Attack_AI_Player
 from game.player.ai_players.chaos_ai_player import Chaos_AI_Player
@@ -65,12 +65,12 @@ if __name__ == "__main__":
 
     aggression_win_rates = {}
 
-    for aggression_level in range(1, 11):
-        aggression_level /= 10
+    for passiveness in [0, 10]:  # range(10, 11):
+        passiveness /= 10
 
-        print(f"\n\n----Testing Aggression level {aggression_level}----")
+        print(f"\n\n----Testing passiveness {passiveness}----")
         main_player = Final_AI_Player(
-            None, username=MAIN_PLAYER_NAME, aggression_level=aggression_level)
+            None, username=MAIN_PLAYER_NAME, passiveness=passiveness)
 
         win_percentages = []
 
@@ -98,9 +98,11 @@ if __name__ == "__main__":
         mean_win_rate = mean(win_percentages) * 100
 
         print(f"Mean victory rate for final AI: {mean_win_rate:.2f}%")
-        aggression_win_rates[aggression_level] = mean_win_rate
+        aggression_win_rates[passiveness] = mean_win_rate
 
     best_key = max(aggression_win_rates, key=aggression_win_rates.get)
     print("Best:                                    ")
-    print(f"\tAggression level: {best_key} ")
+    print(f"\Passive level: {best_key} ")
     print(f"\tWin rate: {aggression_win_rates[best_key]:.2f}%")
+
+    # print(aggression_win_rates)
