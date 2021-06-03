@@ -150,3 +150,14 @@ class Player:
     def acknowledge(self):
         input("Press enter to contine")
         return
+
+    def decide_to_yield(self):
+        print(
+            f"You have been attacked! Your health is now {self.current_health}")
+        user_input = input("Would you like to yield Tokyo? Y/N")
+        if "y" in user_input.lower():
+            return True
+        elif "n" in user_input.lower():
+            return False
+        else:
+            return self.decide_to_yield()

@@ -81,19 +81,19 @@ def run_game(game_state, verbose=False):
 
 if __name__ == "__main__":
     game_state = TerminalBoardGame()
-    # game_state.add_player(Player(username="Real life Player"))
-    game_state.add_player(Chaos_AI_Player(
-        game_state.players, username="CHAOS AI George"))
-    game_state.add_player(Chaos_AI_Player(
-        game_state.players, username="CHAOS AI George1"))
-    game_state.add_player(Chaos_AI_Player(
-        game_state.players, username="CHAOS AI George2"))
+    game_state.add_player(Player(username="Real life Player"))
+    # game_state.add_player(Chaos_AI_Player(
+    #     game_state.players, username="CHAOS AI George"))
+    # game_state.add_player(Chaos_AI_Player(
+    #     game_state.players, username="CHAOS AI George1"))
+    # game_state.add_player(Chaos_AI_Player(
+    #     game_state.players, username="CHAOS AI George2"))
     game_state.add_player(Final_AI_Player(
         game_state.players, username="Final AI Bob"))
-    game_state.add_player(Attack_AI_Player(
-        game_state.players, username="Attack AI Gandhi"))
-    game_state.add_player(Points_AI_Player(
-        game_state.players, username="Points AI Trump"))
+    # game_state.add_player(Attack_AI_Player(
+    # game_state.players, username="Attack AI Gandhi"))
+    # game_state.add_player(Points_AI_Player(
+    # game_state.players, username="Points AI Trump"))
 
     winner = run_game(game_state, verbose=True)
 
