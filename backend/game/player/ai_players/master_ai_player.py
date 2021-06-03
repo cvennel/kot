@@ -49,3 +49,8 @@ class Master_AI_Player(Player):
             if player.location != self.location:
                 attackables.append(player)
         return attackables
+
+    def should_heal_self(self):
+        if (self.maximum_health - self.selfcurrent_health) < 5:
+           return True
+        return False
