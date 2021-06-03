@@ -65,8 +65,8 @@ if __name__ == "__main__":
 
     aggression_win_rates = {}
 
-    for passiveness in [0, 10]:  # range(10, 11):
-        passiveness /= 10
+    for passiveness in [.41]:  # range(10, 11):
+        # passiveness /= 10
 
         print(f"\n\n----Testing passiveness {passiveness}----")
         main_player = Final_AI_Player(

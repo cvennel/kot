@@ -129,6 +129,10 @@ class Player:
             "cards": json_players_hand(self.cards)
         }
 
+    #######################################
+    # Below methods just for offline game #
+    #######################################
+
     def choose_dice_to_re_roll(self, dice):
         input_str = input("Choose which dice to re-roll (zero based index)")
 

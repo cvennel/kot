@@ -12,7 +12,6 @@ class turn_policy(Enum):
 class Final_AI_Player(Master_AI_Player):
 
     def get_current_policy(self):
-        # TODO: improve these heuristics,
         attack_heuristic = self.distance_from_attack_victory() * self.passiveness
         star_heuristic = self.distance_from_star_victory() * (1 - self.passiveness)
 
