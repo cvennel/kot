@@ -21,6 +21,9 @@ class Master_AI_Player(Player):
             total_health += player.current_health
         return total_health
 
+    def health_lost(self):
+        return self.maximum_health - self.current_health
+
     def decide_to_yield(self):
         return True
 

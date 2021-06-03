@@ -24,7 +24,6 @@ class Final_AI_Player(Master_AI_Player):
         return strategy
 
     def decide_to_yield(self):
-        # return True
         strategy = self.get_current_policy()
         distance_to_next_turn = self.distance_to_next_turn()
 
@@ -39,6 +38,11 @@ class Final_AI_Player(Master_AI_Player):
 
     def choose_dice_to_re_roll(self, dice, verbose=False):
         reroll = []
+        save = []
+        for i in range(len(dice)):
+            if dice[i] == DieValue.HEAL:
+                if len(save) < self.health_lost():
+                    save.append(i)
 
         strategy = self.get_current_policy()
 
@@ -60,13 +64,15 @@ class Final_AI_Player(Master_AI_Player):
             for i in range(len(dice)):
                 if dice[i] == die_enum:
                     continue
-                if random.choice([True, False]):
-                    reroll.append(i)
+                else:
+                    if not i in save:
+                        reroll.append(i)
             return reroll
         else:
             for i in range(len(dice)):
                 if dice[i] == DieValue.ATTACK:
                     continue
                 else:
-                    reroll.append(i)
+                    if not i in save:
+                        reroll.append(i)
             return reroll
